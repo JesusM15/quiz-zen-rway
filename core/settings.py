@@ -26,14 +26,13 @@ SECRET_KEY = 'django-insecure-)cx-_p*q)eclpztz7lm!hzj^83eoypwf%_46^-y79ajpl0@y6g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', 'web-production-755a.up.railway.app']
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'account.apps.AccountConfig',
-    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
