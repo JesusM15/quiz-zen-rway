@@ -1,0 +1,41 @@
+<header>
+    <nav class="navbar navbar-expand-lg purple-bg">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'home' %}">Quiz&Zen</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="material-icons" style="color:#fff;">
+                barmenu
+            </span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              {% if request.user.is_active %}
+              <li class="nav-item">
+                <a class="material-icons nav-link" aria-current="page" href="{% url 'ver_perfil' request.user.username %}" style="    font-size: 1.8em;">
+                  person
+                </a>
+              </li>
+              {% endif %}
+              <li class="nav-item">
+                <a class="material-icons nav-link" aria-current="page" href="{% url 'acerca_de' %}" style="    font-size: 1.8em;">
+                  help
+                </a>
+              </li>
+              {% if request.user.is_active %}
+              <li class="nav-item">
+                <a class="material-icons nav-link" aria-current="page" href="{% url 'my_ranks' request.user.username %}" style="    font-size: 1.8em;">
+                  category
+                </a>
+              </li>
+              {% endif %}
+            </ul>
+            {% if bus %}
+            <form class="d-flex" role="search" method="GET" action="{% url 'search_list' %}">
+              <input class="form-control me-2 search-input" type="search" placeholder="Buscar quiz" aria-label="Search" name="query">
+              <input class="btn btn-outline material-icons" style="background:#642bb1;color:#fff;" type="submit" value="search">
+            </form>
+            {% endif %}
+          </div>
+        </div>
+      </nav>
+</header>

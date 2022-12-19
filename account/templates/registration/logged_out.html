@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+    Sesi&oacute;n cerrada
+{% endblock titulo %}
+
+{% block contenido %}
+    <style>
+        h1{
+            color: #fff;
+        }
+        p{
+            color: #fff;
+        }
+    </style>
+    <div class="container">
+        <br><br>
+        <div class="container text-center">
+            <h1>
+                Sesi&oacute;n cerrada
+            </h1>
+            <p>
+            Has cerrado sesi&oacute;n correctamente.
+            Puedes <a href="{% url "login" %}">Iniciar sesi&oacute;n nuevamente</a>.
+            </p>
+        </div>
+    </div>
+
+{% endblock contenido %}

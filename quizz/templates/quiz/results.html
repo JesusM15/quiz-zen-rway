@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+{{quiz.nombre}} | Top -
+{% endblock titulo %}
+
+{% block contenido %}
+    <style>
+        .title{
+            color: #fff;
+            font-size: 2em;
+            text-align: center;
+        }
+        .container > .container{
+            padding: 10px;
+        }
+        .subtitle{
+            color: #fff;
+            font-size: 1em;
+        }
+        .subtitle-link{
+            color: #642bb1;
+            text-decoration: none;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+        .subtitle-link:hover{
+            color: #8548d4;
+        }
+        .table-dark{
+            --bs-table-striped-bg: #642bb1 !important;
+            --bs-table-bg: #000;
+        }
+    </style>
+
+    <div class="container">
+        <br><br><br>
+        <div class="container text-center">
+            {% if currentPuntos %}
+            <h1 class="title" style="font-size:2.2em;">
+                Acabas de sacar:<br> {{currentPuntos}}/{{maxpuntos}}
+            </h1>
+            {% endif %}
+            <h2 class="title">
+                {% if puntuacion %}
+                    Tu m&aacute;xima puntuaci&oacute;n obtenida fue de {{puntuacion.puntos}}/{{maxpuntos}}.
+                {% else %}
+                    No cuentas con una puntuaci&oacute;n registrada.
+                {% endif %}
+            </h2>
+            <p class="subtitle">
+                Puede jugar el quiz a traves del siguiente enlace: 
+            </p>
+            <br><br>
+            <a href="{{quiz.get_absolute_url}}">
+                <img class="img-fluid" src="{{quiz.imagen.url}}" style="max-width:18em;">
+            </a>
+            <br><br>
+            <a href="{{quiz.get_absolute_url}}" class="subtitle-link">
+                {{quiz.nombre}}
+            </a>
+            <br><br><br>
+            <table class="table table-dark table-striped table-top">
+                <tr class="table-dark">
+                    <td class="table-dark purple"  style="background:#642bb1 !important;">
+                        Puntos
+                    </td>
+                    <td class="table-dark purple"  style="background:#642bb1 !important;">
+                        Usuario
+                    </td>
+                </tr>
+                {% for player in topPlayers %}
+                <tr class="table-dark">
+                    <td class="table-dark">
+                        {{player.puntos}}
+                    </td>
+                    <td class="table-dark">
+                        <a href="{% url 'ver_perfil' player.usuario %}" style="color:#fff;">
+                            {{player.usuario}}
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock contenido %}

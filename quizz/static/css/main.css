@@ -1,0 +1,227 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+}
+
+body{
+    background: #141414;
+}
+
+::-webkit-scrollbar-track
+{
+	border: 1px solid transparent;
+	background-color: rgb(0, 0, 0);  /* fallback for old browsers */
+
+}
+::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #000000;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 3px;
+	background-color: #642bb1;
+	opacity: 30%;
+}
+
+.navbar-toggler{
+    box-shadow: none !important;
+    border: none;
+    outline: none !important;
+}
+.purple-bg{
+    background: #0000;
+}
+
+.nav-link, .navbar-brand{
+    color: #fff !important;
+    transition: color 0.25s;
+}
+
+.nav-link:hover, .navbar-brand:hover{
+    color: #b54acd !important;
+}
+
+.disabled{
+    color: rgb(161, 161, 161) !important;
+}
+
+.navbar-brand{
+    font-size: 1.5em;
+}
+.nav-link{
+    font-size: 1.2em;
+}
+
+.search-input{
+    border:none !important;outline:none !important;background:transparent !important;color:#fff !important;border-radius:0;box-shadow: none !important;
+}
+
+.quiz-container{
+    width: 21rem;
+    max-width: 360px;
+    max-height: 360px;
+    min-width: 260px;
+    margin: 0.4em;
+    height: 21rem;
+    background: #212121;
+    text-align: center;
+    border-top: 1px inset #642bb1;
+    /* border: 1px solid #b54acd; */
+}
+
+.portada{
+    max-width: 100%;
+    max-height: 200px;
+    margin: auto;
+    margin-top: 0;
+}
+
+.link-title{
+    text-decoration: none;
+}
+
+
+.link-title > h3{
+    color: #fff;
+    font-size: 1.3em;
+    transition: color 0.2s;
+}
+
+.link-title > h3:hover{
+    color:  #b54acd;
+}
+
+
+.title{
+    color: #fff;
+    font-size: 1.5em;
+    text-align: left;
+}
+
+.info{
+    color: #fff;
+    height: 100%;
+}
+
+.quiz-container{    margin: 0.4em;        border-right: 2px inset #642bb1;
+    background: #000;}
+
+.form-check-input:checked {
+    background-color: #b54acd;
+    border-color: #b54acd;
+}
+
+
+.question-container{
+    width: 50%;
+    max-width: 600px;
+    margin: auto;
+}
+.btn-transparent{
+    background: transparent;
+    width: 100%;
+    padding: 0;
+    border-bottom: 1px solid #b54acd;
+}
+option{
+    color: #fff;
+    padding: 4px;
+}
+.form-select{
+    padding-top: 0;
+    padding-bottom: 0;
+    margin: 0;
+    background: transparent;
+    overflow-y: hidden;
+    height: 125px !important;
+    border: none;
+}
+.form-select:focus{
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+option:focus, option:active{
+    background-color: transparent;
+    border-bottom: 1px solid #b54acd;
+}
+
+.btn-color{
+    background: #642bb1;
+    color: #fff;
+}
+
+.subtitle-link{
+    color: #642bb1;
+    text-decoration: none;
+    font-size: 1em;
+    transition: color 0.3s;
+}
+.subtitle-link:hover{
+    color: #8548d4;
+}
+
+.burbuja{
+    height: 100px;
+    width: 100px;
+    max-width: 100px;
+    border-radius: 50%;
+    position: relative;
+    top: -40px;
+    left: 20px;
+}
+.profile-picture{
+    border-radius: 50%;
+}
+.user-info-container{
+    display: flex;
+}
+.about-user-container{
+    margin-top: 20px;
+    padding-left: 40px;
+}
+.username{
+    color: #fff;
+    font-size: 1.9em;
+}
+.user-extrainfo-container{
+    margin: 0;
+    width: 30em;
+    max-width: 200px;
+    height: 20em;
+    padding-left: 40px;
+    max-height: 100px;
+}
+.stats{
+    color: #fff;
+    font-size: 1.1em;
+}
+
+.btn-action{
+    background: #642bb1;
+    border: none;
+    color: #fff;
+    transition: background 0.4s;
+}
+.btn-action:hover{
+    background: #8548d4;
+}
+
+.btn-link{
+    color: #fff;
+    background: #270358;
+    text-decoration: none;
+    /* border-top-left-radius: 25px;
+    border-bottom-right-radius: 25px; */
+    max-width: 90%;
+    font-size: 1.2em;
+    border: 1px solid inset;
+}
+.btn-link:hover{
+    background: #642bb1;
+    color: #fff;
+}

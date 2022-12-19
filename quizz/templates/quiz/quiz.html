@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+    {{quiz}} -
+{% endblock titulo %}
+
+{% block contenido %}
+<style>
+    .form-check{
+    height: 2em;
+    font-size: 1.2em;
+    text-align: center;
+    background: #191919;
+    }
+    .btn-color{
+    background: #642bb1;
+    color: #fff;
+    font-size: 1.1rem;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    }
+    .btn-color:hover{
+        background: #813cdb;
+        color: #fff;
+        box-shadow: 4px 0px #813cdb;
+    }
+</style>
+    <!-- <input type="radio" value="{{opcion}}" name="respuesta{{pregunta.id}}" id="respuesta{{pregunta.id}}{{forloop.counter}}">
+    <label for="respuesta{{pregunta.id}}{{forloop.counter}}">
+        {{opcion}}
+    </label>     -->
+    <div class="container">
+        <br><br>
+    <form action="{% url 'calificador' quiz.slug %}" method="POST" class="form-floating mb-3" style="margin-bottom:0 !important">
+        {% csrf_token %}
+    {% for pregunta in preguntas %}
+        <div class="question-container">
+            <h3 style="color:#fff;text-align:center;">
+                {{pregunta}}
+            </h3>
+            <br>
+            <img src="{% if pregunta.imagen %}{{pregunta.imagen.url}}{% else %}{% static 'img/preguntadefault.jpg' %}{% endif %}" class="question-img img-fluid" alt="{{pregunta}}">
+            <br><br>
+                {% with opciones=pregunta.opciones.all %}
+                    {% for opcion in opciones %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="respuesta{{forloop.parentloop.counter}}" id="respuesta{{forloop.parentloop.counter}}{{forloop.counter}}" value="{{opcion}}">
+                        <label for="respuesta{{forloop.parentloop.counter}}{{forloop.counter}}" style="color:#fff;">
+                            {{opcion}}
+                        </label>
+                    </div>
+                    {% endfor %}
+                {% endwith %}
+                <br>
+        </div>
+        {% endfor %}
+        <br>
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <input type="submit" value="Completar test" class="btn btn-color">
+          </div>
+        </form>
+        <br>
+    </div>
+{% endblock contenido %}

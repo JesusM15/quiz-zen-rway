@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Mis ranks - 
+{% endblock titulo %}
+
+{% block contenido %}
+    <div class="mt-5 text-center container">
+        <h1 class="text-white">
+            Mis ranks
+        </h1>
+        <br>
+        <div class="container mt-2">
+            <div class="d-flex"  style="background:#642bb1;">
+                <div class="p-2 flex-grow-1 text-white">
+                    Quiz
+                </div>
+                <div class="p-2 text-white">
+                    Puntos
+                </div>
+                <div class="p-2 text-white">
+                    Top
+                </div>
+            </div>
+            {% for ponderacion in ponderaciones %}
+                <div class="d-flex mt-2">
+                    <div class="p-2 flex-grow-1 text-white">
+                        {{ponderacion.quiz}}
+                    </div>
+                    <div class="p-2 text-white" style="text-align:left;">
+                        {{ponderacion.puntos}}
+                    </div>
+                    <div class="p-2">
+                        <a href="{% url 'rank' ponderacion.quiz.slug %}" class="material-icons" style="color: rgb(1, 133, 1);text-decoration: none;">
+                            visibility
+                        </a>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="text-white">No has participado en ning&uacute;n Quiz.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% include 'includes/pagination.html' with page=ponderaciones %}
+
+{% endblock contenido %}
