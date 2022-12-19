@@ -119,6 +119,8 @@ def editQuiz(request, usuario, quiz_slug):
     user = get_object_or_404(User, username=usuario)
     quiz = get_object_or_404(Quiz, slug=quiz_slug, autor=user)
     
+    if request.user != quiz.autor: return redirect('home')
+    
     if request.method == 'POST':
         quiz_form = EditarQuizForm(instance=quiz, data=request.POST, files=request.FILES)
         if quiz_form.is_valid():
