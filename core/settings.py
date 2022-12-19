@@ -89,7 +89,7 @@ DATABASES = {
 }
 
 AUTHENTICATION_BACKENDS = [
-    'account.authentication.EmailAuthBackend'
+    'account.authentication.EmailAuthBackend',
     'django.contrib.auth.backends.ModelBackend',
     'account.authentication.EmailAuthBackend',
     'social_core.backends.facebook.FacebookOAuth2',
