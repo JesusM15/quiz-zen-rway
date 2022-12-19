@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Editar pregunta - 
+{% endblock titulo %}
+
+{% block contenido %}
+
+<style>
+    input{
+        display: block;
+        margin: auto;
+        display: block;
+        padding: 5px;
+        margin-top: 10px;
+    }
+    label{
+        font-size: 1.2em !important;
+    }
+    input[type="text"], input[type='password'], input[type='email'] {
+        background: #000 !important;
+        outline: none !important;
+        width: 100%;
+        max-width: 16em;
+        color: #fff;
+        border: none !important;
+    }
+    input[type='number']{
+        color: #fff;
+        background: #000;
+    }
+    .bg-dark {
+        background: rgb(17, 17, 17) !important;
+        border: 1px solid #642bb1;
+    }
+    .helptext{    display: none;}
+    #imagen-clear_id{
+        display: none;
+    }
+</style>
+
+    <section class="vh-60 gradient-custom">
+        <div class="container py-5 h-60">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center">
+                    <div class="mb-md-5 mt-md-4 pb-3">
+                        <h2 class="fw-bold mb-2">Editar pregunta</h2>
+                        <br>
+                        <form method="POST" action="" class="text-center" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <p>
+                                <label for="id_titulo">Titulo:</label>
+                                <input type="text" name="titulo" value="{{pregunta.titulo}}" maxlength="160" required id="id_titulo">
+                              </p>                              
+                              <p>
+                                <label for="id_imagen">Imagen:</label>
+                                <a href="{% if pregunta.imagen %}{{pregunta.imagen.url}}{% else %}{% endif %}">{{pregunta.imagen.url}}</a>
+                            Modificar:
+                            <input type="file" name="imagen" accept="image/*" id="id_imagen">  
+                              </p>
+                              <p>
+                                <label for="id_puntos">Puntos:</label>
+                                <input type="number" name="puntos" value="{{pregunta.puntos}}" min="0" required id="id_puntos">
+                              </p>
+                              <br>
+                            <input class="btn btn-outline-light btn-lg px-5" type="submit" value="Editar pregunta">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </section>
+{% endblock contenido %}
