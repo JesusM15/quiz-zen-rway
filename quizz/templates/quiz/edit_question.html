@@ -56,7 +56,8 @@
                               </p>                              
                               <p>
                                 <label for="id_imagen">Imagen:</label>
-                                <a href="{% if pregunta.imagen %}{{pregunta.imagen.url}}{% else %}{% endif %}">{{pregunta.imagen.url}}</a>
+                                <a href="{% if pregunta.imagen %}{{pregunta.imagen.url}}{% else %}{% endif %}">
+                                    {% if pregunta.imagen %}{{pregunta.imagen.url}}{% else %}Imagen default{% endif %}</a>
                             Modificar:
                             <input type="file" name="imagen" accept="image/*" id="id_imagen">  
                               </p>
