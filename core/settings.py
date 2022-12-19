@@ -89,10 +89,12 @@ DATABASES = {
 }
 
 AUTHENTICATION_BACKENDS = [
- 'django.contrib.auth.backends.ModelBackend',
- 'account.authentication.EmailAuthBackend',
- 'social_core.backends.facebook.FacebookOAuth2',
-  'social_core.backends.google.GoogleOAuth2',
+    'users.authentication.EmailAuthBackend',
+    'account.authentication.EmailAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',
+    'account.authentication.EmailAuthBackend',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
 ]
 
 # Password validation
