@@ -80,6 +80,9 @@
                     Crear opciones
                 </td> -->
                 <td class="table-dark purple"  style="background:#642bb1 !important;">
+                    Editar
+                </td>
+                <td class="table-dark purple"  style="background:#642bb1 !important;">
                     Borrar
                 </td>
             </tr>
@@ -104,6 +107,11 @@
                                     clear
                                 </span>
                             {% endif %}
+                        </td>
+                        <td class="table-dark">
+                            <a class="btn btn-primary material-icons" href="{% url 'edit_answer' user quiz.slug pregunta.id opcion.id %}">
+                                edit
+                            </a>
                         </td>
                         <td class="table-dark">
                             <a class="btn btn-danger material-icons" href="{% url 'delete_answers' user quiz.slug pregunta.id opcion.id %}">

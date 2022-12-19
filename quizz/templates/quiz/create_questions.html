@@ -41,6 +41,11 @@
 {% endblock css %}
 
 {% block contenido %}
+    <h1 class="text-white text-center">
+        <a href="{% url 'edit_quiz' quiz.autor quiz.slug %}">
+            Editar quiz
+        </a>
+    </h1>
     <section class="vh-60 gradient-custom">
         <div class="container py-5 h-60">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -67,6 +72,9 @@
         <h3 style="color:#fff;">
             Preguntas
         </h3>
+        <p class="text-center text-white">
+            Puedes hacer click en la pregunta para editarla.
+        </p>
         <br>
         <table class="table table-dark table-striped table-top">
             <tr class="table-dark">
@@ -87,14 +95,16 @@
                 {% for pregunta in preguntas %}
                     <tr class="table-dark">
                         <td class="table-dark">
-                            {{pregunta}}
+                            <a href="{% url 'edit_pregunta' quiz.autor quiz.slug pregunta.id %}" style="color:#fff;">
+                                {{pregunta}}
+                            </a>
                         </td>
                         <td class="table-dark">
                             {{pregunta.puntos}}
                         </td>
                         <td class="table-dark">
                             <a class="btn btn-primary material-icons" href="{% url 'create_answers' quiz.autor quiz.slug pregunta.id %}">
-                                edit
+                                add
                             </a>
                         </td>
                         <td class="table-dark">

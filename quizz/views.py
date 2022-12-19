@@ -114,6 +114,21 @@ def createQuiz(request, usuario):
     
     return render(request, 'quiz/create.html', context)
 
+@login_required
+def editQuiz(request, usuario, quiz_slug):
+    user = get_object_or_404(User, username=usuario)
+    quiz = get_object_or_404(Quiz, slug=quiz_slug, autor=user)
+    
+    if request.method == 'POST':
+        quiz_form = EditarQuizForm(instance=quiz, data=request.POST, files=request.FILES)
+        if quiz_form.is_valid():
+            quiz_form.save()
+            return redirect(reverse('ver_perfil', args=[quiz.autor]))
+    else:
+        quiz_form = EditarQuizForm(instance=quiz)   
+        
+    return render(request, 'quiz/edit_quiz.html', {'quiz_form': quiz_form, 'quiz':quiz}) 
+
 
 @login_required
 def createQuestions(request, usuario, quiz_slug):
@@ -135,9 +150,30 @@ def createQuestions(request, usuario, quiz_slug):
         form_p = CrearPregunta()
 
     
-    context = {'quiz':quiz, 'user':user, 'form_p': form_p, 'preguntas':preguntas}
+    context = {'quiz':quiz, 'user':user, 'form_p': form_p, 'preguntas':preguntas,}
     
     return render(request, 'quiz/create_questions.html', context)
+
+@login_required
+def editPregunta(request, usuario, quiz_slug, pregunta_id):
+    user = get_object_or_404(User, username=usuario)
+    quiz = get_object_or_404(Quiz, autor=user, slug=quiz_slug)
+    pregunta = get_object_or_404(Pregunta, quiz=quiz, pk=pregunta_id)
+    
+    if request.user != quiz.autor:return redirect('home')
+    
+    if request.method == 'POST':
+        edit_form = EditarPregunta(instance=pregunta, data=request.POST, files=request.FILES)
+        if edit_form.is_valid():
+            edit_form.save()
+            return redirect(reverse('create_questions', args=[request.user.username, quiz.slug]))
+    else:
+        edit_form = EditarPregunta(instance=pregunta)
+    
+    context = {'edit_form': edit_form, 'pregunta':pregunta}
+    
+    return render(request, 'quiz/edit_question.html', context)
+    
 
 @login_required
 def deleteQuestions(request, usuario, quiz_slug, pregunta_id):
@@ -170,6 +206,25 @@ def createAnswers(request, usuario, quiz_slug, pregunta_id):
     context = {'user':user, 'quiz':quiz, 'pregunta':pregunta, 'opciones': opciones,'form_r':form_r,}
     
     return render(request, 'quiz/create_answers.html', context)
+
+@login_required
+def editAnswer(request, usuario, quiz_slug, pregunta_id, answer_id):
+    user = get_object_or_404(User, username=usuario)
+    quiz = get_object_or_404(Quiz, autor=user, slug=quiz_slug)
+    pregunta = get_object_or_404(Pregunta, quiz=quiz, pk=pregunta_id)
+    respuesta = get_object_or_404(Opcion, pregunta=pregunta, pk=answer_id)
+    
+    if request.user != quiz.autor:return redirect('home')
+    if request.method == 'POST':
+        form_r = EditarRespuesta(instance=respuesta, data=request.POST)
+        if form_r.is_valid():
+            form_r.save()
+            return redirect(reverse('create_answers', args=[request.user.username, quiz.slug, pregunta.id]))
+    else:
+        form_r = EditarRespuesta(instance=respuesta)
+        
+    context = {'respuesta': respuesta, 'form_r': form_r}
+    return render(request, 'quiz/edit_answer.html', context)
     
 @login_required
 def deleteAnswers(request, usuario, quiz_slug, pregunta_id, answer_id):
@@ -192,3 +247,4 @@ def deleteQuiz(request, usuario, quiz_id):
         quiz.delete()
     
     return redirect(reverse('ver_perfil', args=[request.user.username]))
+

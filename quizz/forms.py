@@ -6,6 +6,11 @@ class QuizForm(forms.ModelForm):
         model = Quiz
         fields = ['nombre', 'imagen', 'aprobado', 'tag']
         
+class EditarQuizForm(forms.ModelForm):
+    class Meta:
+        model = Quiz
+        fields = ['nombre', 'imagen', 'aprobado']
+        
 class CrearPregunta(forms.ModelForm):
     class Meta:
         model = Pregunta
@@ -16,3 +21,12 @@ class CrearRespuesta(forms.ModelForm):
         model = Opcion
         fields = ['cuerpo', 'correcta']
 
+class EditarPregunta(forms.ModelForm):
+    class Meta:
+        model = Pregunta
+        fields = ['titulo', 'imagen', 'puntos']
+        
+class EditarRespuesta(forms.ModelForm):
+    class Meta:
+        model = Opcion
+        fields = ['cuerpo', 'correcta']
